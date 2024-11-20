@@ -1,16 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?> <!-- Importing Insets for padding -->
+<?import javafx.scene.control.Button?> <!-- Importing Button control -->
+<?import javafx.scene.control.Label?> <!-- Importing Label control -->
+<?import javafx.scene.control.TextField?> <!-- Importing TextField control -->
+<?import javafx.scene.layout.BorderPane?> <!-- Importing BorderPane layout -->
+<?import javafx.scene.layout.HBox?> <!-- Importing HBox layout for horizontal arrangement -->
+<?import javafx.scene.layout.VBox?> <!-- Importing VBox layout for vertical arrangement -->
+<?import javafx.scene.text.TextFlow?> <!-- Importing TextFlow for displaying text -->
+<?import javafx.scene.text.Text?> <!-- Importing Text for displaying text content -->
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.project.librarymanagement.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.librarymanagement.LibraryController">
+    <!-- Top section for the title of the application -->
+    <top>
+        <Label style="-fx-font-size: 40px; -fx-padding: 20; -fx-text-fill: blue;" text="LIBRARY MANAGEMENT SYSTEM" BorderPane.alignment="CENTER" />
+    </top>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <!-- Center section for main content -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 30; -fx-alignment: CENTER;">
+            <!-- Library.Book Section: Input fields for adding a book -->
+            <HBox spacing="20">
+                <Label text="Book ID:" />
+                <TextField fx:id="bookIdInput" /> <!-- Input for Book ID -->
+                <Label text="Book Title:" />
+                <TextField fx:id="bookTitleInput" /> <!-- Input for Book Title -->
+                <Button onAction="#addBookHandler" style="-fx-background-color: blue; -fx-text-fill: white;" text="Add Book" /> <!-- Button to add a book -->
+            </HBox>
+
+            <!-- Library.Patron Section: Input fields for adding a patron -->
+            <HBox prefHeight="26.0" prefWidth="516.0" spacing="20">
+                <Label prefHeight="18.0" prefWidth="55.0" text="Patron ID:" />
+                <TextField fx:id="patronIdInput" prefHeight="28.0" prefWidth="149.0">
+                    <HBox.margin>
+                        <Insets left="-11.0" /> <!-- Padding adjustment -->
+                    </HBox.margin>
+                </TextField>
+                <Label prefHeight="18.0" prefWidth="78.0" text="Patron Name:" />
+                <TextField fx:id="patronNameInput" prefHeight="26.0" prefWidth="147.0">
+                    <HBox.margin>
+                        <Insets left="-20.0" /> <!-- Padding adjustment -->
+                    </HBox.margin>
+                </TextField>
+                <Button onAction="#addPatronHandler" style="-fx-background-color: blue; -fx-text-fill: white;" text="Add Patron" /> <!-- Button to add a patron -->
+            </HBox>
+
+            <!-- Lending/Returning Section: Input fields for lending a book -->
+            <HBox spacing="20">
+                <Label text="Book ID:" />
+                <TextField fx:id="lendBookIdInput" /> <!-- Input for Book ID for lending -->
+                <Label text="Patron ID:" />
+                <TextField fx:id="lendPatronIdInput">
+                    <HBox.margin>
+                        <Insets left="4.0" /> <!-- Padding adjustment -->
+                    </HBox.margin>
+                </TextField>
+                <Button onAction="#lendBookHandler" style="-fx-background-color: blue; -fx-text-fill: white;" text="Lend Library.Book" /> <!-- Button to lend a book -->
+            </HBox>
+
+            <!-- Returning Section: Input fields for returning a book -->
+            <HBox spacing="20">
+                <Label text="Book ID:" />
+                <TextField fx:id="returnBookIdInput" /> <!-- Input for Book ID for return -->
+                <Label text="Patron ID:" />
+                <TextField fx:id="returnPatronIdInput">
+                    <HBox.margin>
+                        <Insets left="4.0" /> <!-- Padding adjustment -->
+                    </HBox.margin>
+                </TextField>
+                <Button onAction="#returnBookHandler" style="-fx-background-color: blue; -fx-text-fill: white;" text="Return Library.Book" /> <!-- Button to return a book -->
+            </HBox>
+
+            <!-- Section with buttons to display all books, patrons, and transactions -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button onAction="#displayAllBooks" style="-fx-background-color: blue; -fx-text-fill: white;" text="Display Books" /> <!-- Button to display all books -->
+                <Button onAction="#displayAllPatrons" style="-fx-background-color: blue; -fx-text-fill: white;" text="Display Patrons" /> <!-- Button to display all patrons -->
+                <Button onAction="#displayCurrentTransaction" style="-fx-background-color: blue; -fx-text-fill: white;" text="Display Transactions" /> <!-- Button to display current transactions -->
+            </HBox>
+
+            <!-- Display Section: Area for displaying dynamic content -->
+            <TextFlow fx:id="displayArea" prefHeight="200.0" prefWidth="400.0">
+                <!-- Dynamic content will be added to this TextFlow in the controller -->
+            </TextFlow>
+        </VBox>
+    </center>
+</BorderPane>
